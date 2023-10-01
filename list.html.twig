@@ -1,0 +1,29 @@
+{% if authors is empty%}
+    
+    <h1>No element!</h1>
+
+{%else%}
+
+    {% set total = 0 %}
+
+    <table style="border: 1px solid black;">
+
+        {% for author in authors %}
+            {% set total = total + author.nb_books%}
+            <tr>
+                <td style="border: 1px solid black;">{{author.username|upper}}</td>
+                <td style="border: 1px solid black;"><a href="{{ path('author_details',{'id': author.id}) }}">Details</td>
+            </tr>
+        {%endfor%}
+        <tr>
+            <td style="border: 1px solid black;">Nombre d'auteurs:</td>
+            <td style="border: 1px solid black;"> {{authors|length}} </td>
+        </tr>
+    
+        <tr>
+            <td style="border: 1px solid black;">Nombre Totale de livres:</td>
+            <td style="border: 1px solid black;"> {{total}} </td>
+        </tr>
+    </table>
+
+{%endif%}
